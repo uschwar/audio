@@ -11,3 +11,5 @@ load-module module-bluetooth-policy a2dp_source=true hfgw=false auto_switch=0
 # See https://github.com/raspberrypi/linux/issues/2229#issuecomment-391397669
 load-module module-bluetooth-discover autodetect_mtu=yes headset=native
 
+load-module module-card-restore restore_bluetooth_profile=true
+load-module module-switch-on-connect

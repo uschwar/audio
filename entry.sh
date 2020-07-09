@@ -59,6 +59,7 @@ pa_disable_module module-console-kit
 pa_disable_module module-bluetooth-discover
 pa_disable_module module-bluetooth-policy
 pa_disable_module module-native-protocol-unix
+pa_disable_module module-suspend-on-idle
 
 # Set PulseAudio cookie
 if [[ -n "$COOKIE" ]]; then
