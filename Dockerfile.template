@@ -7,7 +7,11 @@ ENV UDEV=on
 # DBUS is required for module-bluetooth-discover
 ENV DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 
-RUN install_packages pulseaudio pulseaudio-module-bluetooth xxd alsa-utils
+RUN install_packages pulseaudio pulseaudio-module-bluetooth xxd alsa-utils libasound2-plugin-equal
+
+#setting variables specific to uschwars device
+ENV AUDIO_OUTPUT=EQ
+ENV BALENA_HOST_CONFIG_dtoverlay=hifiberry-dacplus
 
 # For local development
 #dev-cmd-live=pulseaudio || balena-idle
@@ -16,6 +20,9 @@ RUN install_packages pulseaudio pulseaudio-module-bluetooth xxd alsa-utils
 COPY pulseaudio/primitive.pa /etc/pulse/primitive.pa
 COPY pulseaudio/client.conf /etc/pulse/client.conf
 COPY pulseaudio/daemon.conf /etc/pulse/daemon.conf
+
+# Alsa EQ configuration
+COPY alsa/asound.conf /etc/asound.conf
 
 # UDev configuration
 COPY udev/95-balena-audio.rules /etc/udev/rules.d/95-balena-audio.rules

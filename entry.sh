@@ -90,6 +90,15 @@ function pa_set_default_output () {
       fi
       ;;
 
+    # Use alsa EQ
+    ${options["EQ"]})
+      if [[ -n "$DAC_CARD" ]]; then
+        PA_SINK="equal"
+      else
+        echo "WARNING: No DAC found. Falling back to PulseAudio defaults."
+      fi
+      ;;
+
     # AUTO - USB > DAC > BUILT-IN
     ${options["AUTO"]})
       declare -a sound_cards=("${USB_CARDS[@]}" "$DAC_CARD" "${BCM2835_CARDS[@]}")
